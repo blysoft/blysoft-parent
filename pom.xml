@@ -1,0 +1,288 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.blysoft.parent</groupId>
+  <artifactId>blysoft-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <name>blysoft-parent</name>
+  <url>http://maven.apache.org</url>
+  
+  <!--包括的核心模块-->
+    <modules>
+       <module>../blysoft-util</module>
+       <module>../blysoft-core</module>
+       <module>../blysoft-framework</module>
+       <module>../blysoft-framework-web</module>
+        <!-- 博客模块 -->
+       <module>../blysoft-blog-util</module>
+       <module>../blysoft-blog-core</module>
+       <module>../blysoft-blog</module>
+       <module>../blysoft-blog-web</module>
+    </modules> 
+    
+  <build>
+      <resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+     </resources>
+     
+     <plugins>
+		 <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+			<source>1.7</source>
+			<target>1.7</target>
+		    </configuration>
+		 </plugin>
+	 </plugins>
+ </build> 
+
+ <!--框架核心jar包管理  -->
+ 
+    <properties>
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+       <spring-framework.version>4.1.6.RELEASE</spring-framework.version>
+       <org.aspectj-version>1.6.10</org.aspectj-version>  
+       <druid.version>1.0.15</druid.version>
+       <jackson.version>2.5.4</jackson.version>
+       <mybatis.version>3.3.0</mybatis.version>
+    </properties>
+    
+    <dependencies>
+       <!-- DataSource pool start-->
+	     <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		  </dependency>
+       <!-- DataSource pool end-->
+       
+        <!--spring start-->
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>${spring-framework.version}</version>
+        </dependency>
+        
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aspects</artifactId>
+          <version>${spring-framework.version}</version>
+       </dependency>
+        
+        <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-webmvc</artifactId>
+		  <version>${spring-framework.version}</version>	
+		</dependency>
+		
+		<dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-context</artifactId>  
+            <version>${spring-framework.version}</version>  
+            <exclusions>  
+                <!-- Exclude Commons Logging in favor of SLF4j -->  
+                <exclusion>  
+                    <groupId>commons-logging</groupId>  
+                    <artifactId>commons-logging</artifactId>  
+                 </exclusion>  
+            </exclusions>  
+        </dependency>  
+        
+		<dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+          <version>${spring-framework.version}</version>
+       </dependency>
+       
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${spring-framework.version}</version>
+        </dependency>
+         
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>${spring-framework.version}</version>
+       </dependency>
+        
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>${spring-framework.version}</version>
+          <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+        
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+	    <!--spring end-->
+         
+        <!-- AspectJ start-->  
+        <dependency>  
+            <groupId>org.aspectj</groupId>  
+            <artifactId>aspectjrt</artifactId>  
+            <version>${org.aspectj-version}</version>  
+        </dependency>  
+        <!-- AspectJ end--> 
+        
+        <!--mybatis 核心包  start-->
+        <dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+        <!--mybatis 核心包  end-->
+    
+        <!-- mybatis/spring包 start-->
+        <dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+        <!-- mybatis/spring包 end-->
+    
+        <!-- 导入Mysql数据库链接jar包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.30</version>
+		</dependency>
+        <!-- end -->
+       
+       <!-- oracle start -->
+       <dependency>
+          <groupId>oracle</groupId>
+          <artifactId>ojdbc</artifactId>
+          <version>5</version>
+       </dependency>
+       <!-- oracle end -->
+       
+       <!--jackson  start-->
+         <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+	        <groupId>org.codehaus.jackson</groupId>
+	        <artifactId>jackson-core-asl</artifactId>
+	        <version>1.9.13</version>
+       </dependency>
+       
+       <dependency>
+	        <groupId>org.codehaus.jackson</groupId>
+	        <artifactId>jackson-mapper-lgpl</artifactId>
+	        <version>1.9.13</version>
+       </dependency>
+       <!--jackson  end-->
+       
+       <!-- Servlet start-->  
+        <dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>servlet-api</artifactId>  
+            <version>2.5</version>  
+            <scope>provided</scope>  
+        </dependency>  
+        <dependency>  
+            <groupId>javax.servlet.jsp</groupId>  
+            <artifactId>jsp-api</artifactId>  
+            <version>2.1</version>  
+            <scope>provided</scope>  
+        </dependency>  
+        <dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>jstl</artifactId>  
+            <version>1.2</version>  
+        </dependency>
+       <!-- Servlet end -->
+       
+       <!-- json start -->
+       <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+	    <dependency>
+	       <groupId>net.sf.flexjson</groupId>
+	       <artifactId>flexjson</artifactId>
+	        <version>3.2</version>
+       </dependency>
+        <!-- json end -->
+        
+      <!-- 文件上传 start -->
+       <dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+      <!-- 文件上传 end -->  
+        
+       <!--日志功能 start-->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+       <!--日志功能 end-->
+      <!--spring AOP  -->
+        <dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.4</version>
+		</dependency>       
+   </dependencies>
+</project>
